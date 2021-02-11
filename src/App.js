@@ -18,7 +18,7 @@ class App extends React.Component {
   };
   minus = () => {
     console.log("minus");
-    this.setState(current => ({count:this.state.count-1}));
+    this.setState(current => ({count:current.count-1}));
   };
   componentDidMount() {
     console.log("component rendered");
