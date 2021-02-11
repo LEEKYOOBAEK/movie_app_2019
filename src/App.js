@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log("hello");
+  }
   state = {
     //the data will be changed
     count: 0 
@@ -16,8 +20,11 @@ class App extends React.Component {
     console.log("minus");
     this.setState(current => ({count:this.state.count-1}));
   };
-
+  componentDidMount() {
+    console.log("component rendered");
+  }
   render (){
+    console.log("rendering");
     return (
       <div>
         <h1> The number is : {this.state.count}</h1>
