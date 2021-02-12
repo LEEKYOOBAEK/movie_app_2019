@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import axios from "axios";
+import Movie from "./Movie";
 
 
 class App extends React.Component 
@@ -14,7 +15,7 @@ class App extends React.Component
       data: {
         data: {movies}
       }
-    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
     //ES6의 혁신 const {movies} -> {data: {data: {movies}}}
     this.setState({ movies, isLoading: false });
     //this.setState({ movies: movies })
@@ -27,12 +28,20 @@ class App extends React.Component
   }
   render ()
   {
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
     return (
       <div>
-        {isLoading ? "Loading" : "We are ready"}
+        {isLoading ? "Loading..." : movies.map(movie => (
+        <Movie 
+        key={movie.id} 
+        id={movie.id} 
+        year={movie.year} 
+        title={movie.title} 
+        summary={movie.summary} 
+        poster={movie.medium_cover_image}/>
+        ))}
       </div>
-    )
+    );
   }
 }
 export default App;
