@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import axios from "axios";
 
 
 class App extends React.Component 
@@ -8,11 +9,12 @@ class App extends React.Component
     isLoading: true,
     movies: []
   };
-  componentDidMount() {
-    //이론적으로 데이터를 패치하는 것
-    setTimeout(() => {
-      this.setState({ isLoading: false, book: true });
-    }, 6000);
+  getMovies = async () => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  }
+  componentDidMount() 
+  {
+    this.getMovies();
   }
   render ()
   {
