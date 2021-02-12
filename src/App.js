@@ -10,10 +10,17 @@ class App extends React.Component
     movies: []
   };
   getMovies = async () => { 
-    const {data: { data :{movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    const {
+      data: {
+        data: {movies}
+      }
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
     //ES6의 혁신 const {movies} -> {data: {data: {movies}}}
-    console.log(movies);
-  }
+    this.setState({ movies, isLoading: false });
+    //this.setState({ movies: movies })
+    //앞 movies는 state로부터 뒤 movies 는 axios로부터 설정
+    
+    }
   componentDidMount() 
   {
     this.getMovies();
