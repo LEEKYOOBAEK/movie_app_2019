@@ -2,36 +2,26 @@ import React from "react";
 import ReactDOM from 'react-dom';
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("hello");
-  }
+class App extends React.Component 
+{
   state = {
-    //the data will be changed
-    count: 0 
-    //count default zero\
-  };
-  add = () => {
-    console.log("add");
-    this.setState(current => ({count:current.count+1}));
-  };
-  minus = () => {
-    console.log("minus");
-    this.setState(current => ({count:current.count-1}));
+    isLoading: true,
+    movies: []
   };
   componentDidMount() {
-    console.log("component rendered");
+    //이론적으로 데이터를 패치하는 것
+    setTimeout(() => {
+      this.setState({ isLoading: false, book: true });
+    }, 6000);
   }
-  render (){
-    console.log("rendering");
+  render ()
+  {
+    const { isLoading } = this.state;
     return (
       <div>
-        <h1> The number is : {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-    </div>
-    );
+        {isLoading ? "Loading" : "We are ready"}
+      </div>
+    )
   }
 }
 export default App;
